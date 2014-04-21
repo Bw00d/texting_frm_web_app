@@ -1,13 +1,6 @@
 class Message < ActiveRecord::Base
   before_create :send_message
 
-  def initialize(attributes)
-    @to = attributes['to']
-    @from = attributes['from']
-    @body = attributes['body']
-    @status = attributes['status']
-  end
-
   private
 
   def send_message
@@ -21,7 +14,9 @@ class Message < ActiveRecord::Base
                       :To => to,
                       :From => from }
       ).execute
-    rescue
+    rescue RestClient::BadRequest => error
+      message = JSON.parse(error.response)['message']
+      errors.add(:base, message)
       false
     end
   end
