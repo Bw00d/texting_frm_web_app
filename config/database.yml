@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: textual-satisfaction_development
+test:
+  adapter: postgresql
+  database: textual-satisfaction_test
