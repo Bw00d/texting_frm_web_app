@@ -1,5 +1,30 @@
 require 'spec_helper'
 
+feature 'homepage' do
+  before { visit root_url }
+
+  it 'should have appropriate title' do
+    expect(page).to have_title "Text Friends"
+  end
+
+  describe 'header' do
+    it 'should have "Login" link to the login page' do
+      click_link 'Login'
+      expect(page).to have_title "Login | Text Friends"
+    end
+
+    it 'should have a "Sign up" link to the signup page' do
+      click_link 'Sign up'
+      expect(page).to have_title "Sign up | Text Friends"
+    end
+
+    it 'should have a "Text Friends" link to the homepage' do
+      click_link 'Text Friends'
+      expect(page).to have_title "Text Friends"
+    end
+  end
+end
+
 feature 'sign up' do
   before  { visit new_user_registration_path }
 
