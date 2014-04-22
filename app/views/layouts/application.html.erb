@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for?(:title) ? yield(:title)+" | Text Friends" : "Text Friends" %></title>
+  <title><%= content_for?(:title) ? yield(:title)+" | Textual Satisfaction" : "Textual Satisfaction" %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
   <body>
-  <%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
-  <div class="container">
-    <%= yield %>
-  </div>
+    <div class="container body-container">
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <%= yield %>
+
+    </div>
 
   </body>
 </html>

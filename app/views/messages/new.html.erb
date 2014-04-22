@@ -1,0 +1,22 @@
+<%= content_for(:title, "New Message") %>
+
+<div class="container">
+  <%= form_for @message do |f| %>
+
+    <div class="form-group">
+      <%= f.label :to %><br />
+      <%= f.text_field :to, placeholder: "8005551212", autofocus: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :from %><br />
+      <%= f.text_field :from, placeholder: "8005551212" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :body %><br />
+        <%= f.text_field :body, placeholder: "Compose..." %>
+      </div>
+
+    <div><%= f.submit "Send" %></div>
+  <% end %>
+</div>
+

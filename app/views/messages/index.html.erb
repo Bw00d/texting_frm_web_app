@@ -1,2 +1,12 @@
+<%= content_for(:header) do %>
 
+<% end %>
 
+<div class="container centered">
+  <h1 class="welcome">Welcome to Textual Satisfaction</h1>
+    <% if user_signed_in? %>
+      <p class="new_message"><%= link_to "New Message", new_message_path, id: "message_link" %></p>
+    <% else %>
+      <p class="new_message"><h3><%= link_to "Login to send a new message", new_message_path, id: "message_link" %></a></p>
+    <% end %>
+</div>
