@@ -25,29 +25,56 @@ feature 'homepage' do
   end
 end
 
-feature 'sign up' do
+feature 'sign up page' do
   before  { visit new_user_registration_path }
 
-  it 'should let a user sign up with valid information' do
-    fill_in 'Email', with: "user@example.com"
-    fill_in 'Password', with: "foobarbaz"
-    fill_in 'Password confirmation', with: "foobarbaz"
-    click_button "Sign up"
-    expect(page).to have_content ("Welcome! You have signed up successfully.")
+  it 'should have appropriate title' do
+    expect(page).to have_title "Sign up | Text Friends"
   end
 
-  it 'should not create a new user if password it too short' do
-    fill_in 'Email', with: "user@example.com"
-    fill_in 'Password', with: "foobar"
-    fill_in 'Password confirmation', with: "foobar"
-    click_button "Sign up"
-    expect(page).to have_content ("Password is too short")
+  describe 'sign up' do
+
+    it 'should let a user sign up with valid information' do
+      fill_in 'Email', with: "user@example.com"
+      fill_in 'Password', with: "foobarbaz"
+      fill_in 'Password confirmation', with: "foobarbaz"
+      click_button "Sign up"
+      expect(page).to have_content ("Welcome! You have signed up successfully.")
+    end
+
+    it 'should not create a new user if password it too short' do
+      fill_in 'Email', with: "user@example.com"
+      fill_in 'Password', with: "foobar"
+      fill_in 'Password confirmation', with: "foobar"
+      click_button "Sign up"
+      expect(page).to have_content ("Password is too short")
+    end
+
+    it 'should not create a new user if email is invalid' do
+      fill_in 'Email', with: "user.example.com"
+      fill_in 'Password', with: "foobarbaz"
+      fill_in 'Password confirmation', with: "foobarbaz"
+      click_button "Sign up"
+      expect(page).to have_content ("Email is invalid")
+    end
   end
-  it 'should not create a new user if enail is invalid' do
-    fill_in 'Email', with: "user.example.com"
-    fill_in 'Password', with: "foobarbaz"
-    fill_in 'Password confirmation', with: "foobarbaz"
-    click_button "Sign up"
-    expect(page).to have_content ("Email is invalid")
+end
+
+feature 'login page' do
+  before { visit new_user_session_path }
+
+
+  it 'should have appropriate title' do
+    expect(page).to have_title "Login | Text Friends"
+  end
+
+  describe 'login' do
+      before { create_user }
+    it 'should allow a user to create a new session with valid information' do
+      fill_in 'Email', with: 'user@example.org'
+      fill_in 'Password', with: 'foobarbaz'
+      click_button "Login"
+      expect(page).to have_content ("Edit profile")
+    end
   end
 end
