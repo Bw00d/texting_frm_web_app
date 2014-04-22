@@ -1,5 +1,4 @@
 <%= content_for(:title, "New Message") %>
-
 <div class="container">
   <%= form_for @message,remote: true do |f| %>
 
@@ -12,11 +11,12 @@
       <%= f.text_field :from, placeholder: "8005551212" %>
     </div>
     <div class="form-group">
-        <%= f.label :body %><br />
-        <%= f.text_field :body, placeholder: "Compose..." %>
-      </div>
+      <%= f.label :body %><br />
+      <%= f.text_field :body, placeholder: "Compose..." %>
+    </div>
 
     <div><%= f.submit "Send" %></div>
   <% end %>
+  <%= render 'add_contact' %>
 </div>
 

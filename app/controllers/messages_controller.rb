@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   def index
     @user = current_user
     @messages = Message.all
+    @contact = Contact.new(params[:contact])
   end
 
   def new

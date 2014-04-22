@@ -1,5 +1,6 @@
 <div class="add-contact">
     <p><%= @message.body %> was sent</p>
     <p>Would you like to add this number to your address book?</p>
-    <button id="yes">Yes</button><button id="no">No</button>
+    <%= link_to "yes ", new_contact_path %>
+    <%= link_to " no", new_message_path %>
 </div>
