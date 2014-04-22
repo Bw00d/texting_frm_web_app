@@ -1,0 +1,7 @@
+<h3>Your contacts</h3>
+<ul id="contacts">
+  <% @contacts.each do |contact| %>
+  <li class="name"><%= contact.name %></li>
+  <li><%= contact.number %></li>
+  <% end %>
+</ul>
